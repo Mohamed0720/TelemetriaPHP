@@ -67,7 +67,21 @@
 
         return $lista;
     }
+   
     
+    //Funzione che dice se si e' mai verificato un ping da 100ms o no
+    function ping100ms($ping_validi){
+        foreach($ping_validi as $ping){
+            if($ping == 100){
+                return "si";
+                break;
+            }
+
+        }
+        return "no";
+    }
+
+
     $ping_grezzi = [45, 120, -1, 32, 210, 85, -1, 18, 95, 310, 45, 60, -1, 150, 28, 240, 18, 72];
 
     array_push($ping_grezzi, 55, 190, 12);
@@ -81,6 +95,15 @@
     calcoloMinMax($ping_validi, $minPing, $maxPing);
 
     $pingCritici = calcoloValoriCritici($ping_validi);
+
+    $ping_unici = array_unique($ping_validi);
+    $ping_ordinati = $ping_validi;
+    sort($ping_ordinati);
+    $topTrePing = array_slice($ping_ordinati, 0, 3);
+
+    $controllo100ms = ping100ms($ping_validi);
+
+
 
 ?>
 
@@ -110,6 +133,12 @@
         </li>
         <li>
             Ping minimo: <?= $minPing?>
+        </li>
+        <li>
+            top tre ping: <?= implode(" ms, ", $topTrePing)?> ms
+        </li>
+        <li>
+            Controllo 100 ms: <?= $controllo100ms?>
         </li>
     </ul>
 </body>
