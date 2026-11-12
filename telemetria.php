@@ -54,6 +54,19 @@
 
     }
 
+
+    //Funzione calcolo valori critici
+    function calcoloValoriCritici($ping_validi){
+        $lista = [];
+
+        foreach($ping_validi as $ping){
+            if($ping > 150){
+                $lista[] = $ping;
+            }
+        }
+
+        return $lista;
+    }
     
     $ping_grezzi = [45, 120, -1, 32, 210, 85, -1, 18, 95, 310, 45, 60, -1, 150, 28, 240, 18, 72];
 
@@ -67,6 +80,7 @@
     $minPing = 0;
     calcoloMinMax($ping_validi, $minPing, $maxPing);
 
+    $pingCritici = calcoloValoriCritici($ping_validi);
 
 ?>
 
@@ -78,6 +92,25 @@
     <title>Telemetria</title>
 </head>
 <body>
-    
+    <ul>
+        <li>
+            Totale rilevazioni: <?= count($ping_grezzi)?>
+        </li>
+        <li>
+            Ping validi: <?= count($ping_validi)?>
+        </li>
+        <li>
+            Pacchetti persi: <?= $pacchetti_persi?>
+        </li>
+        <li>
+            Media ping: <?= $pingMedio?>
+        </li>
+        <li>
+            Ping massimo: <?= $maxPing?>
+        </li>
+        <li>
+            Ping minimo: <?= $minPing?>
+        </li>
+    </ul>
 </body>
 </html>
