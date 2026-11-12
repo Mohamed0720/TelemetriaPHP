@@ -39,6 +39,20 @@
         return $tempoMedio;
     }
 
+    //Funzione calcolo min e max
+    function calcoloMinMax($ping_validi, &$min, &$max){
+        $min = $ping_validi[0];
+        $max = $ping_validi[0];
+        
+        foreach($ping_validi as $ping){
+            if($ping > $max){
+                $max = $ping;
+            }else if($ping < $min){
+                $min = $ping;
+            }
+        }
+
+    }
 
     
     $ping_grezzi = [45, 120, -1, 32, 210, 85, -1, 18, 95, 310, 45, 60, -1, 150, 28, 240, 18, 72];
@@ -48,7 +62,11 @@
     $pacchetti_persi = contaPacchettiPersi($ping_grezzi);
     $ping_validi = pingValidi($ping_grezzi);
     $pingMedio = tempoMedioRisposta($ping_grezzi);
-    
+
+    $maxPing = 0;
+    $minPing = 0;
+    calcoloMinMax($ping_validi, $minPing, $maxPing);
+
 
 ?>
 
