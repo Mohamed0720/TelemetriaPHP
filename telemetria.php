@@ -24,6 +24,22 @@
         return $lista;
     }
 
+
+    //Funzione calcolo ping medio
+    function tempoMedioRisposta($ping_validi){
+        $tempoMedio = 0;
+        $contatore = 0;
+        foreach($ping_validi as $ping){
+            $tempoMedio += $ping;
+            $contatore++;
+        }
+
+        $tempoMedio = round($tempoMedio/$contatore, 2);
+
+        return $tempoMedio;
+    }
+
+
     
     $ping_grezzi = [45, 120, -1, 32, 210, 85, -1, 18, 95, 310, 45, 60, -1, 150, 28, 240, 18, 72];
 
@@ -31,6 +47,7 @@
 
     $pacchetti_persi = contaPacchettiPersi($ping_grezzi);
     $ping_validi = pingValidi($ping_grezzi);
+    $pingMedio = tempoMedioRisposta($ping_grezzi);
     
 
 ?>
