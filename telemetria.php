@@ -3,8 +3,8 @@
     function contaPacchettiPersi($ping_grezzi){
         $pacchetti_persi = 0;
         foreach ($ping_grezzi as $ping){
-            if($ping<0){
-                $pacchetti_persi += 1;
+            if($ping == -1){
+                $pacchetti_persi++;
             }
         }
         return $pacchetti_persi;
@@ -30,7 +30,7 @@
     array_push($ping_grezzi, 55, 190, 12);
 
     $pacchetti_persi = contaPacchettiPersi($ping_grezzi);
-    $ping_validi = $lista;
+    $ping_validi = pingValidi($ping_grezzi);
     
 
 ?>
